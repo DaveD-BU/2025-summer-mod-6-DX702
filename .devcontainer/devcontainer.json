@@ -1,0 +1,53 @@
+{
+	"name": "Data Science (Python)",
+	"image": "mcr.microsoft.com/devcontainers/universal:2",
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/python:1": {
+			"version": "latest"
+		},
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/azure-cli:1": {}
+	},
+
+	"postCreateCommand": "if [ -f environment.yml ]; then conda env update -f environment.yml; elif [ -f requirements.txt ]; then conda install --yes --file requirements.txt || pip install -r requirements.txt; fi",
+
+    "customizations": {
+    // Configure properties specific to VS Code.
+        "vscode": {
+        // Add the IDs of extensions you want installed when the container is created.
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "GitHub.copilot",
+                "ms-vscode.azure-account",
+                "ms-azuretools.vscode-azurestaticwebapps",
+                "ms-toolsai.jupyter",
+				"ms-python.python",
+                "mechatroner.rainbow-csv"
+            ],
+            "settings": {
+                "emmet.includeLanguages": {
+                "javascript": "javascriptreact"
+                },
+                "emmet.triggerExpansionOnTab": true,
+                "[python]": {
+                    "defaultInterpreterPath": "/opt/conda/bin/python",
+                    "editor.defaultFormatter": "ms-python.python",
+                    "editor.formatOnType": true,
+                    "editor.formatOnSave": true
+                },
+                "[jupyter]": {
+                    "themeMatplotlibPlots": true,
+                    "widgetScriptSources": [
+                        "unpkg.com",
+                        "jsdelivr.com"
+                    ]
+                }
+            }
+        }
+    },
+	
+    
+    "forwardPorts": [1234]
+}
